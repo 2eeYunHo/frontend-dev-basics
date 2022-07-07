@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>BOM(Browser Object Model)</h1>
+	<h2>3. localtion 객체</h2>
+	<h3>Refresh Page 하는 방법</h3>
+	
+	<!--  방법 1 -->
+	<button onclick="location = location;">referesh01</button>
+	
+	<!--  방법 2 -->
+	<button onclick="location.href = location.href;">referesh02</button>
+	
+	<!--  방법 3 -->
+	<button onclick="location.assign('')">referesh03</button>
+	
+	<!--  방법 4 -->
+	<button onclick="location.replace(location)">referesh04</button>
+	
+	<!-- 방법5: Ctrl + F5: no cache -->
+	<button onclick="location.reload();">referesh05</button>
+
+	<h3>Redirect 하는 방법</h3>
+	<button onclick="location.href='https://www.douzone.com';">우리 회사 가기</button>
+	
+</body>
+</html>

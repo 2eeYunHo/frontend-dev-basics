@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+window.addEventListener("load", function(){
+	var imgElement = document.createElement("img");
+	
+	imgElement.src = "https://item.kakaocdn.net/do/58119590d6204ebd70e97763ca933baf9f5287469802eca457586a25a096fd31";
+	imgElement.style.width = "200px";
+	imgElement.alt = '루피!';
+	imgElement.title = '루피만세~~';
+	
+	setTimeout(function(){
+		document.body.appendChild(imgElement);
+	}, 2000);
+});
+</script>
+</head>
+<body>
+	<h1 id='h' data-no='10'>DOM(Document Object Model)</h1>
+	<h2>3. HTML Element 속성 조작하기1</h2>
+</body>
+</html>
