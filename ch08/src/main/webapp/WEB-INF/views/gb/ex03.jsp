@@ -1,0 +1,72 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="${pageContext.request.contextPath }/jquery/jquery-3.6.0.js"></script>
+<script>
+/*
+ *  1. scroll event는 ch07/ex36.html 참고
+ 	2. api/guestbook?sno=10: sno 보다 작은 row를 top-k
+ */
+var render = function(vo, mode) {
+	var htmls = 
+		"<li data-no=''>" +
+		"<strong>" + vo.name + "</strong>" +
+		"<p>" + vo.message + "</p>" +
+		"<strong></strong>" +
+		"<a href='' data-no='" + vo.no + "'>삭제</a>" + 
+		"</li>";
+	
+	$("#list-guestbook")[mode ? "append" : "prepend"](htmls);
+}
+
+var fetch = function() {
+	$.ajax({
+		url: "/ch08/api/guestbook",
+		type: "get",
+		dataType: "json",
+		success: function(response) {
+			if(response.result !== 'success'){
+				console.error(response.message);
+				return;
+			}
+			
+			response.data.forEach(function(vo){
+				render(vo, true);
+			});
+		}		
+	});
+}
+$(function(){
+	// ...
+	// 글 삭제 버튼 Click 이벤트 처리(Live Event)
+	$(document).on('click', '')
+	$("#list-guestbook li a").click(function(event){
+		event.preventDefault();
+		console.log("click");
+	});
+	// ...
+
+	fetch();
+});
+</script>
+</head>
+<body>
+			<div id="guestbook">
+				<h1>방명록</h1>
+				<form id="add-form" action="" method="post">
+					<input type="text" id="input-name" placeholder="이름">
+					<input type="password" id="input-password" placeholder="비밀번호">
+					<textarea id="tx-content" placeholder="내용을 입력해 주세요."></textarea>
+					<input type="submit" value="보내기" />
+				</form>
+				<ul id="list-guestbook">
+				</ul>
+			</div>
+</body>
+</html>
